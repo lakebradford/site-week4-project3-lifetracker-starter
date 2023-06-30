@@ -1,3 +1,21 @@
 .Navbar {
   padding-top: 20px;
 }
+
+#navigation-bar{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display:flex;
+  justify-content: center;
+
+  /* BORDERS FOR TESTING PURPOSES, DELETE LATER */
+  border-style: solid;
+}
+
+.navigation-button{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
