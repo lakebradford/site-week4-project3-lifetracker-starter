@@ -1,0 +1,13 @@
+.activity-form{
+    height: 200px;
+    display: grid;
+
+}
+
+.activity-form-wrapper{
+   
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
