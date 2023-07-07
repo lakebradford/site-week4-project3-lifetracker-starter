@@ -17,14 +17,14 @@ const Tile = ({tileObject, itemNameTitles, currentActivityType}) => {
 
   console.log(`currrrentnntntntntt ${currentActivityType}`)
   if (currentActivityType == "exercise"){
-    altImage = "src/assets/exercise.svg"
+    altImage = "lifetracker-ui/src/assets/exercise.svg"
   }
   if(currentActivityType == "sleep"){
-    altImage = "src/assets/bed.svg"
+    altImage = "lifetracker-ui/src/assets/bed.svg"
   }
 
   if(currentActivityType == "nutrition"){
-    altImage = "src/assets/nutrition.svg"
+    altImage = "lifetracker-ui/src/assets/nutrition.svg"
   }
 
 
