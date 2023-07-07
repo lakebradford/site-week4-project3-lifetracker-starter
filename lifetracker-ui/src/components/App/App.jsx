@@ -264,7 +264,7 @@ function App() {
   const handleRegistration = async (username, email, firstname, lastname, password) => {
     try {
       // Accessing the database
-      const response = await fetch("http://localhost:3001/api/auth/register", {
+      const response = await fetch("postgres://life_tracker_database_user:MMMSWvnit8atoLTgRLwoB1xzffGFjWN9@dpg-cik8uop5rnuvtgujl3ng-a/life_tracker_database/auth/register", {
         //calling a post request using the data we received from the regisration form
         method: "POST",
         headers: {
@@ -322,7 +322,7 @@ function App() {
 
   const getSleepQuery = async(userID) =>{
     axios
-      .get(`http://localhost:3001/api/auth/sleep/${userID}`)
+      .get(`postgres://life_tracker_database_user:MMMSWvnit8atoLTgRLwoB1xzffGFjWN9@dpg-cik8uop5rnuvtgujl3ng-a/life_tracker_database/auth/sleep/${userID}`)
       .then((response) => {
         console.log("SLEEP DATA")
         console.log(response.data.user)
@@ -337,7 +337,7 @@ function App() {
 
   const getExerciseQuery = async(userID) =>{
     axios
-      .get(`http://localhost:3001/api/auth/exercise/${userID}`)
+      .get(`postgres://life_tracker_database_user:MMMSWvnit8atoLTgRLwoB1xzffGFjWN9@dpg-cik8uop5rnuvtgujl3ng-a/life_tracker_database/auth/exercise/${userID}`)
       .then((response) => {
         console.log("EXERCISE DATA")
         console.log(response.data.user)
@@ -352,7 +352,7 @@ function App() {
 
   const getNutritionQuery = async(userID) =>{
     axios
-      .get(`http://localhost:3001/api/auth/nutrition/${userID}`)
+      .get(`postgres://life_tracker_database_user:MMMSWvnit8atoLTgRLwoB1xzffGFjWN9@dpg-cik8uop5rnuvtgujl3ng-a/life_tracker_database/auth/nutrition/${userID}`)
       .then((response) => {
         console.log("NUTRITION DATA")
         console.log(response.data.user)
