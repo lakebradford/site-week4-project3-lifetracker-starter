@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./Navbar.css"
 
 
-const Navbar = ({setIsAddActivityFormOpen}) => {
+const Navbar = ({setIsAddActivityFormOpen, loggedIn, handleLogout }) => {
     //Navbar should contain the following buttons:
     // ------------Router Buttons ----------
     // Activity, Sleep, Nutriton, Exercise
@@ -17,17 +17,18 @@ const Navbar = ({setIsAddActivityFormOpen}) => {
     //setIsAddActivityFormOpen: used to close the form when switching tabs
 
   return (
-    <div>
+    <div id = "navbar-div">
         <ul id = "navigation-bar">
-            <li className = "navigation-button" id = 'activity-button-navbar'><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}>Home</Link></li>
-            <li className = "navigation-button" id = 'activity-button-navbar'><Link to="/Activity" onClick={() => setIsAddActivityFormOpen(false)}>Activity</Link></li>
-            <li className = "navigation-button" id = 'exercise-button-navbar'><Link to="/Exercise" onClick={() => setIsAddActivityFormOpen(false)}>Exercise</Link></li>
-            <li className = "navigation-button" id = 'nutrition-button-navbar'><Link to="/Nutrition" onClick={() => setIsAddActivityFormOpen(false)}>Nutrition</Link></li>
-            <li className = "navigation-button" id = 'sleep-button-navbar'><Link to="/Sleep" onClick={() => setIsAddActivityFormOpen(false)}>Sleep</Link></li>
+            <li className = "navigation-icon" id = 'activity-button-navbar'><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}><img  id = "logo-icon"src = {"src/assets/health.png"}/></Link></li>
+            <li className = "navigation-button" id = 'activity-button-navbar'><Link to="/Activity" onClick={() => setIsAddActivityFormOpen(false)}><button className='nav-button'> Activity</button></Link></li>
+            <li className = "navigation-button" id = 'exercise-button-navbar'><Link to="/Exercise" onClick={() => setIsAddActivityFormOpen(false)}> <button className='nav-button'>Exercise</button></Link></li>
+            <li className = "navigation-button" id = 'nutrition-button-navbar'><Link to="/Nutrition" onClick={() => setIsAddActivityFormOpen(false)}> <button className='nav-button'>Nutrition</button></Link></li>
+            <li className = "navigation-button" id = 'sleep-button-navbar'><Link to="/Sleep" onClick={() => setIsAddActivityFormOpen(false)}><button className='nav-button'>Sleep</button></Link></li>
             {/* These buttons will be visible depending on if a user is signed in or not */}
-            <li className = "navigation-button" id = 'log-in-button-navbar'><Link to="/Login" onClick={() => setIsAddActivityFormOpen(false)}>Log In</Link></li>
-            <li className = "navigation-button" id = 'register-button-navbar'><Link to="/Register" onClick={() => setIsAddActivityFormOpen(false)}>Register</Link></li>
-            <li className = "navigation-button" id = 'sign-out-button-navbar'><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}>Sign Out</Link></li>
+            
+            {!loggedIn &&<li className = "navigation-button log-button"><Link to="/Login" onClick={() => setIsAddActivityFormOpen(false)}><button id = 'register-login-button-navbar' className='nav-button'>Log In</button></Link></li>}
+            {!loggedIn &&<li className = "navigation-button log-button" ><Link to="/Register" onClick={() => setIsAddActivityFormOpen(false)}><button id = 'register-login-button-navbar' className='nav-button'>Register</button></Link></li>}
+            {loggedIn &&<li className = "navigation-button log-button" ><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}><button className='nav-button' id = 'sign-out-button-navbar' onClick = {handleLogout}>Log Out</button></Link></li>}
         </ul>
 
     </div>

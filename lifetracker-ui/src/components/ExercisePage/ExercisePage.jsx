@@ -2,9 +2,9 @@ import React from 'react'
 import Hero from '../Hero/Hero'
 import ActivityGrid from '../ActivityGrid/ActivityGrid'
 import Tile from '../Tile/Tile'
-import AddActivityButton from '../AddActivityButton/AddActivityButton'
 
-const ExercisePage = ({tileData, setTileData, isAddActivityFormOpen, setIsAddActivityFormOpen, setCurrentActivityType, currentActivityType, setTileObject, tileObject, setExerciseTileObject}) => {
+
+const ExercisePage = ({isAddActivityFormOpen, setIsAddActivityFormOpen, setCurrentActivityType, currentActivityType,addExerciseActivity, loggedIn, exerciseData, getExerciseQuery, currentUser}) => {
   //tileData: an array of objects
   //  - will be passed to and iterated through in activityGrid
   //  - ActivityGrid uses tile to display our tiles on screen
@@ -25,23 +25,31 @@ const ExercisePage = ({tileData, setTileData, isAddActivityFormOpen, setIsAddAct
 
   //irst we need to set the current Activity type so we can 
   setCurrentActivityType("exercise")
+  console.log(`exercisedata ${exerciseData}`)
   console.log("current activity is now set to: ", currentActivityType)
+  console.log(`logged in ${loggedIn}`)
 
 
 
   return (
     <div>
         <Hero name = {"Exercise"} color = {"#d3ffce"}/>
-        {/* Now we need to check if our activity form is open, if it is then we do not display the activityGrid (displaying empty div) */}
+        {loggedIn?
         <ActivityGrid 
-          tileData = {tileData} 
-          setTileData = {setTileData} 
-          isAddActivityFormOpen = {isAddActivityFormOpen} 
-          setIsAddActivityFormOpen = {setIsAddActivityFormOpen} 
-          currentActivityType={currentActivityType}
-          setTileObject ={setTileObject} 
-          tileObject={tileObject}
-          setExerciseTileObject = {setExerciseTileObject}/>
+        isAddActivityFormOpen = {isAddActivityFormOpen} 
+        setIsAddActivityFormOpen = {setIsAddActivityFormOpen} 
+        currentActivityType={currentActivityType}
+        addExerciseActivity = {addExerciseActivity}
+        addCurentData={addExerciseActivity}
+        currentData={exerciseData}
+        updateData={getExerciseQuery}
+        currentuser={currentUser}
+        input = {["text", "number", "number"]}
+        itemNameTitles = {["Exercise", "Duration", "Intensity"]}
+
+        />
+        : <center><div id = "not-logged-in">Login to see data</div></center> }
+
     </div>
   )
 }

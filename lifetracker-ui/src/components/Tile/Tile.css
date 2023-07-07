@@ -1,4 +1,4 @@
-.Tile {
+.tile-border {
   border-radius: 10px;
   background: white;
   width: calc(50% - 10px);
@@ -6,11 +6,28 @@
   min-width: 80px;
   min-width: 250px;
   min-height: 250px;
+  max-width: 400px;
   margin-bottom: 16px;
   transition: all 0.25s ease-in-out;
   box-shadow: rgba(9, 6, 74, 0.15) 0px 2px 34px 0px;
+  position: relative; 
 }
-.Tile:hover {
+.tile-border:hover {
   cursor: pointer;
   transform: scale(1.05);
+}
+
+.tile-data{
+  padding: 10px;
+}
+
+#tile-image{
+  max-width: 100%; /* Add this line */
+  max-height: 100%; /* Add this line */
+  display: block; /* Add this line */
+  object-fit: cover; /* Add this line */
+  border-radius: 6px; /* Add this line (optional) */
+  overflow: hidden; /* Add this line (optional) */
+  border-style: solid;
+  border-width: 4px;
 }

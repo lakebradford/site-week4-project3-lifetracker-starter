@@ -12,7 +12,8 @@ const Hero = ({name, color}) => {
   // Current props that are being passed down
   let currentBackgroundColor = color
   let currentHeroName = name
-  console.log(`changing background color to ${color}`)
+  
+
     
 
   return (

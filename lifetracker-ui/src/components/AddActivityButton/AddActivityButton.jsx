@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import "./AddActivityButton.css"
-const AddActivityButton = ({tileData, setTileData, setIsAddActivityFormOpen, isAddActivityFormOpen, currentActivityType, setTileObject, tileObject}) => {
+
+
+const AddActivityButton = ({setIsAddActivityFormOpen, isAddActivityFormOpen,addCurrentData, input, itemNameTitles,currentActivityType}) => {
     //when clicked, the button opens up into a form
     //When the form is filled out, and submitted, the activity is added to the activities array of previous logged tiles and is displayed on screen
     
@@ -18,79 +20,35 @@ const AddActivityButton = ({tileData, setTileData, setIsAddActivityFormOpen, isA
 
     //----------------- USESTATE VARIABLES SPECIFIC TO THE ADD ACTIVITY BUTTON --------------------\\
     // UseState variable that is specific to this component, Is used to change the text of the button when clicked
-    const [buttonText, setButtonText] = useState("Add Activity")
 
     //All data is passed up to App 
     // These are for settingand getting the data from each different form. there are 3 items in reach form so we can use thesre universally over the 3 inputs
     const [item1, setItem1] = useState('')
     const [item2, setItem2] = useState('')
     const [item3, setItem3] = useState('')
+    const [item4, setItem4] = useState('')
 
     //Input types and placeholders
-    const [item1Input, setItem1Input] = useState()
-    const [item2Input, setItem2Input] = useState()
-    const [item3Input, setItem3Input] = useState()
 
-    const [item1Placeholder, setItem1Placeholder] = useState()
-    const [item2Placeholder, setItem2Placeholder] = useState()
-    const [item3Placeholder, setItem3Placeholder] = useState()
 
-    function test(event) {
-        setExerciseType(event.target.value);
-        console.log(exerciseType)
-    }
+
+
+    
     
     const handleAddButtonCLick = (event) => {
         //if the form is open, we want to close it on the button click,
         event.preventDefault()
         if(isAddActivityFormOpen){
-            setButtonText("Add Activity")
+ 
             setIsAddActivityFormOpen(false)
+            event.target.style.backgroundColor = "#1899D6"
+            
+
         }
         else{
             setIsAddActivityFormOpen(true)
-            setButtonText("Cancel")
-        }
-        // We will have 3 different if statements, one for each activity type
-        // we use currentActivityType to determine which form we will return
-        // If our currentActivityType doesnt match any of our current activities, we return "no activity found"
-        if(currentActivityType == 'exercise'){
-            // If our current activity Type is exercise, we need to change the input types to text for the exercise type, number for duration, and number for intensity
-            //we also need to update the placeholder and value
-
-            //Changing Each input type 
-            setItem1Input("text") 
-            setItem2Input("number")
-            setItem3Input("number")
-            //change placeholder (using UseState variables)
-            setItem1Placeholder("Exercise Type")
-            setItem2Placeholder("Exercise Duration")
-            setItem3Placeholder("Exercise Intensity")
-
-        }
-        else if(currentActivityType == 'sleep'){
-            // if our current activity type is exercise, we need to change the input types to date, time, and time
-
-            //Changing Each input type 
-            setItem1Input("date") 
-            setItem2Input("time")
-            setItem3Input("time")
-            //change placeholder (using UseState variables)
-            setItem1Placeholder("Date")
-            setItem2Placeholder("Start Time")
-            setItem3Placeholder("End Time")
-        }
-        else if(currentActivityType == 'nutrition'){
-            //finally if our current activity type is nutrition, we need to change the input types to text, number, and number
-
-            //Changing Each input type 
-            setItem1Input("text") 
-            setItem2Input("number")
-            setItem3Input("number")
-            //change placeholder (using UseState variables)
-            setItem1Placeholder("Food")
-            setItem2Placeholder("Calories")
-            setItem3Placeholder("Quantity")
+    
+            event.target.style.backgroundColor = "#ff5c5c"
         }
     }
 
@@ -98,34 +56,36 @@ const AddActivityButton = ({tileData, setTileData, setIsAddActivityFormOpen, isA
         event.preventDefault()
         //We first identify our activity so we can set the appropriate items
         //Then, call setter variables and update the corresponding tile information
-        if(currentActivityType == 'exercise'){
-            //updating the tile information by creating a tile object and adding it to our tileData
+        console.log("Item has been submitted")
+        
 
-            let exerciseTileObject = {typeOfExercise: item1, durationOfExercise: item2, intensityOfExercise: item3}
-            //Now we add exerciseTileObject to our Tile. Information is passed back to App and then put into the database
-            setTileData(tileData.concat(exerciseTileObject))
 
-        }
-        else if(currentActivityType == 'sleep'){
-            let sleepTileObject = {dateOfSleep: item1, startSleepTime: item2, endSleepTime: item3}
-            setTileData(tileData.concat(sleepTileObject))
-        }
-        else if(currentActivityType == 'nutrition'){
-            let nutritionTileObject = {nutritionItem: item1, caloriesOfNutritionItem: item2, quantityOfNutritionItem: item3}
-            setTileData(tileData.concat(nutritionTileObject))
-        }
+        addCurrentData(item1, item2, item3,item4)
+        setIsAddActivityFormOpen(false)
+
+        setItem1('')
+        setItem2('')
+        setItem3('')
+        
     }
+   
+
+
+
+    
 
   return (
     <div>
-        <center><button onClick={handleAddButtonCLick}>{buttonText}</button></center>
+        <div id = "button-div"><button id = "add-activity" onClick={handleAddButtonCLick}>{ isAddActivityFormOpen? "Cancel": `record ${currentActivityType}`}</button></div>
         {isAddActivityFormOpen? 
             <div className='activity-form-wrapper'>
                 <form className='activity-form'onSubmit={handleAddItemSubmit}>
-                    <input type = {item1Input} id = "form-item-1" placeholder={item1Placeholder} value = {item1} onChange={(event)=> setItem1(event.target.value)} required></input>
-                    <input type = {item2Input} id = "form-item-2" placeholder={item2Placeholder} value = {item2} onChange={(event)=> setItem2(event.target.value)}required></input>
-                    <input type = {item3Input} id = "form-item-3" placeholder={item3Placeholder} value = {item3} onChange={(event)=> setItem3(event.target.value)}required></input>
-                    <button type='submit'>Update</button>
+                    <center><div id = "exercise-div">Record {currentActivityType}</div> </center>
+                    <input type = {input[0]} className='form-items' id = "form-item-1" placeholder={itemNameTitles[0]} value = {item1} onChange={(event)=> setItem1(event.target.value)} required></input>
+                    <input type = {input[1]} className='form-items' id = "form-item-2" placeholder={itemNameTitles[1]} value = {item2} onChange={(event)=> setItem2(event.target.value)}required></input>
+                    <input type = {input[2]} className='form-items' id = "form-item-3" placeholder={itemNameTitles[2]} value = {item3} onChange={(event)=> setItem3(event.target.value)}required></input>
+                    <input type = "text" className='form-items' id = "form-image" placeholder="Image" value = {item4} onChange={(event)=> setItem4(event.target.value)}></input>
+                    <div id = "button-div"><button type='submit' id = "form-submit" placeholder='Update' >Update</button></div>
                 </form>
             </div>: <div></div> }
     </div>

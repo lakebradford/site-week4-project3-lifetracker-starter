@@ -18,7 +18,7 @@ function getDatabaseUri(){
     //if the database URL enviromnent variable is already created, we can use that
     //otherwise we can create the database url with the information with the variables we defined
 
-    return process.env.DATABASE_URL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`
+    return`postgres://life_tracker_database_user:MMMSWvnit8atoLTgRLwoB1xzffGFjWN9@dpg-cik8uop5rnuvtgujl3ng-a/life_tracker_database`
 }
 
 console.log("-------------Life Tracker: Config.js-------------".green)

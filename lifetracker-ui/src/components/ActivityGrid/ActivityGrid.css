@@ -1,11 +1,10 @@
 #activity-grid{
+    align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
     
 
 
 
-
-    /* TESTING PURPOSES ONLY DELETE LATER */
-    border-style: solid;
-    border-color: brown;
 
 }
