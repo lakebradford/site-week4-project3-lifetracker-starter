@@ -19,7 +19,7 @@ const Navbar = ({setIsAddActivityFormOpen, loggedIn, handleLogout }) => {
   return (
     <div id = "navbar-div">
         <ul id = "navigation-bar">
-            <li className = "navigation-icon" id = 'activity-button-navbar'><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}><img  id = "logo-icon"src = {"lifetracker-ui/src/assets/health.png"}/></Link></li>
+            <li className = "navigation-icon" id = 'activity-button-navbar'><Link to="/" onClick={() => setIsAddActivityFormOpen(false)}><img  id = "logo-icon"src = {"/health.png"}/></Link></li>
             <li className = "navigation-button" id = 'activity-button-navbar'><Link to="/Activity" onClick={() => setIsAddActivityFormOpen(false)}><button className='nav-button'> Activity</button></Link></li>
             <li className = "navigation-button" id = 'exercise-button-navbar'><Link to="/Exercise" onClick={() => setIsAddActivityFormOpen(false)}> <button className='nav-button'>Exercise</button></Link></li>
             <li className = "navigation-button" id = 'nutrition-button-navbar'><Link to="/Nutrition" onClick={() => setIsAddActivityFormOpen(false)}> <button className='nav-button'>Nutrition</button></Link></li>
